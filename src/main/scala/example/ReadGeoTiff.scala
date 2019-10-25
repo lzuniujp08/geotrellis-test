@@ -21,7 +21,8 @@ object ReadGeoTiff {
       (0 to tile.findMinMax._2 by 4).toArray,
       ColorRamps.HeatmapBlueToYellowToRedSpectrum
     )
-    tile.renderPng(colorMap).write("result/test.png")
+    val pathOut: String = "D:\\lzugis19\\code\\geotrellis-test\\result\\test.png"
+    tile.renderPng(colorMap).write(pathOut)
     val end =new Date().getTime
     println(end - start)
   }

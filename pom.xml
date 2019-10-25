@@ -1,19 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>1.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
     <groupId>example</groupId>
     <artifactId>scala-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <geotrellis.version>2.2.0</geotrellis.version>
+        <geotrellis.version>3.0.0</geotrellis.version>
     </properties>
 
     <dependencies>
         <!--scalatest-->
         <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_2.11</artifactId>
+            <artifactId>scalatest_2.12</artifactId>
             <version>3.0.8</version>
             <scope>test</scope>
         </dependency>
@@ -21,24 +21,33 @@
         <!--geotrellis-->
         <dependency>
             <groupId>org.locationtech.geotrellis</groupId>
-            <artifactId>geotrellis-raster_2.11</artifactId>
+            <artifactId>geotrellis-raster_2.12</artifactId>
             <version>${geotrellis.version}</version>
         </dependency>
         <dependency>
             <groupId>org.locationtech.geotrellis</groupId>
-            <artifactId>geotrellis-spark_2.11</artifactId>
+            <artifactId>geotrellis-vector_2.12</artifactId>
             <version>${geotrellis.version}</version>
         </dependency>
         <dependency>
             <groupId>org.locationtech.geotrellis</groupId>
-            <artifactId>geotrellis-spark-etl_2.11</artifactId>
+            <artifactId>geotrellis-geotools_2.12</artifactId>
             <version>${geotrellis.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.locationtech.geotrellis</groupId>
+            <artifactId>geotrellis-spark_2.12</artifactId>
+            <version>${geotrellis.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.locationtech.geotrellis</groupId>
+            <artifactId>geotrellis-spark-etl_2.12</artifactId>
+            <version>2.2.0</version>
+        </dependency>-->
 
-        <!-- spark -->
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
+            <artifactId>spark-core_2.12</artifactId>
             <version>2.4.4</version>
         </dependency>
 

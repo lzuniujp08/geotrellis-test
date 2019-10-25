@@ -33,7 +33,8 @@ object KernelDensity {
       (0 to kde.findMinMax._2 by 4).toArray,
       ColorRamps.HeatmapBlueToYellowToRedSpectrum
     )
-    kde.renderPng(colorMap).write("result/test.png")
-    GeoTiff(kde, extent, LatLng).write("result/test.tif")
+    val pathBase: String = "D:\\lzugis19\\code\\geotrellis-test\\result\\"
+    kde.renderPng(colorMap).write(pathBase + "test.png")
+    GeoTiff(kde, extent, LatLng).write(pathBase + "test.tif")
   }
 }
