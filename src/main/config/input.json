@@ -1,0 +1,9 @@
+[{
+  "format":"geotiff",
+  "name":"etlTest1",
+  "cache":"NONE",
+  "backend":{
+    "type":"hadoop",
+    "path":"D:\\data\\gis_data\\dem\\beijing.tif"
+  }
+}]
