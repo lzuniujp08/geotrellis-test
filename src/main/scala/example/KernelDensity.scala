@@ -6,7 +6,6 @@ import geotrellis.raster.io.geotiff._
 import geotrellis.raster.mapalgebra.focal.Kernel
 import geotrellis.raster.render.{ColorMap, ColorRamps}
 import geotrellis.vector._
-
 import scala.util._
 
 object KernelDensity {
