@@ -24,6 +24,20 @@ object ReadNetcdf {
       val valArray = vs.get(2).read().get1DJavaArray(valType).asInstanceOf[Array[Float]]
       FloatUserDefinedNoDataArrayTile(valArray, lonArray.length, latArray.length, FloatUserDefinedNoDataCellType(nodata)).rotate180.flipVertical
     }
+
+    def getVal(lon: Float, lat: Float): Double = {
+      val xmin = lonArray.min
+      val ymax = latArray.max
+      val xDlt = (lonArray.max - xmin) / lonArray.length
+      val yDlt = (ymax - latArray.min) / latArray.length
+      val xIdx = ((lon - xmin) / xDlt).round
+      val yIdx = ((ymax - lat) / yDlt).round
+      tile.getDouble(xIdx, yIdx)
+    }
+
+    val v = getVal(108.514F, 30.5051F)
+    println(v)
+
 //    val histogram = StreamingHistogram.fromTile(tile)
 //    val breaks = histogram.quantileBreaks(3)
 //    val colorMap = ColorRamps.BlueToRed.toColorMap(breaks);
