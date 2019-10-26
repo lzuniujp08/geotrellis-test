@@ -51,6 +51,12 @@
             <version>2.4.4</version>
         </dependency>
 
+        <!-- netcdf -->
+        <dependency>
+            <groupId>edu.ucar</groupId>
+            <artifactId>netcdf</artifactId>
+            <version>4.3.22</version>
+        </dependency>
     </dependencies>
 
     <repositories>
