@@ -1,39 +1,14 @@
 package example
 
-import example.KernelDensity.extent
 import geotrellis.proj4.LatLng
-import geotrellis.raster.histogram.StreamingHistogram
 import geotrellis.raster.io.geotiff.GeoTiff
-import geotrellis.raster.{FloatArrayTile, FloatUserDefinedNoDataArrayTile, FloatUserDefinedNoDataCellType, RasterExtent, Tile}
-import geotrellis.raster.mapalgebra.focal.Kernel
-import geotrellis.raster.render.{ColorMap, ColorRamp, ColorRamps, RGB}
+import geotrellis.raster._
+import geotrellis.raster.render.{ColorMap, ColorRamp, RGB}
 import ucar.nc2._
-import geotrellis.vector.{Extent, Feature, Point, PointFeature}
-import org.apache.spark.unsafe.array.LongArray
-
-import scala.collection.mutable.ListBuffer
+import geotrellis.vector.{Extent}
 
 object ReadNetcdf {
   val ncUri: String = "D:\\data\\zzrw_coefficient_gust.nc"
-
-  def ncPointFeatures(
-                       lonArray: Array[Float],
-                       latArray: Array[Float],
-                       valArray: Array[Float]
-                     ): List[PointFeature[Float]] = {
-    val list: ListBuffer[Feature[Point, Float]] = ListBuffer[Feature[Point, Float]]()
-    for (i <- 0 to latArray.length - 1) {
-      val lat = latArray(i)
-      for (j <- 0 to lonArray.length - 1) {
-        val lon = lonArray(j)
-        val idx = i * lonArray.length + j;
-        val v = valArray(idx)
-        val f = Feature(Point(lon, lat), v)
-        list += f
-      }
-    }
-    list.toList
-  }
 
   def main(args: Array[String]): Unit = {
     val ncfile = NetcdfFile.open(ncUri)
