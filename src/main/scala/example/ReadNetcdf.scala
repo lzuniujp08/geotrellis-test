@@ -3,9 +3,9 @@ package example
 import geotrellis.proj4.LatLng
 import geotrellis.raster.io.geotiff.GeoTiff
 import geotrellis.raster._
-import geotrellis.raster.render.{ColorMap, ColorRamp, RGB}
+import geotrellis.raster.render.{ColorMap, ColorRamp, GreaterThanOrEqualTo, RGB}
 import ucar.nc2._
-import geotrellis.vector.{Extent}
+import geotrellis.vector.Extent
 
 object ReadNetcdf {
   val ncUri: String = "D:\\data\\zzrw_coefficient_gust.nc"
@@ -24,7 +24,21 @@ object ReadNetcdf {
       val valArray = vs.get(2).read().get1DJavaArray(valType).asInstanceOf[Array[Float]]
       FloatUserDefinedNoDataArrayTile(valArray, lonArray.length, latArray.length, FloatUserDefinedNoDataCellType(nodata)).rotate180.flipVertical
     }
-    val colorMap = ColorRamps.HeatmapYellowToRed
+val colorMap =
+  ColorMap(
+    Map(
+      1.507 -> RGB(43,131,186),
+      1.599 -> RGB(171,211,164),
+      1.692 -> RGB(255,255,191),
+      1.784 -> RGB(253,174,97),
+      1.876 -> RGB(215,25,28)
+    ),
+    ColorMap.Options(
+      classBoundaryType = GreaterThanOrEqualTo,
+      noDataColor = 0xFFFFFFFF,
+      fallbackColor = 0xFFFFFFFF
+    )
+  )
     tile.renderPng(colorMap).write(pathBase + "test.png")
     GeoTiff(tile, extent, LatLng).write(pathBase + "test.tif")
     ncfile.close()
